@@ -28,6 +28,15 @@ flat_serialize_macro::flat_serialize! {
     }
 }
 
+// this creates a struct like
+// ```
+// struct SimpleArrayData<'a> {
+//     header: &'a u32,
+//     data: &'a [f64],
+// }
+// ```
+// which can be used to wrap the data
+
 // Right now we need to define a wrapper type because #[derive(...)] isn't
 // usable on flat_serialize!(...) types directly. We derive PostgresType,
 // Copy, and Clone but _not_ Serialize and Deserialize. Because we don't have
